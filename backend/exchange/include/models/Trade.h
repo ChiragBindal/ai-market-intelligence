@@ -19,6 +19,8 @@ private:
 
 public:
     Trade(int buyOrderId, int sellOrderId, Symbol symbol, double price, double quantity, Side aggressorSide);
+    Trade(int buyOrderId, int sellOrderId, Symbol symbol, double price, double quantity, Side aggressorSide,
+          std::chrono::system_clock::time_point tradeTime);
     int getTradeId() const;
     int getBuyOrderId() const;
     int getSellOrderId() const;

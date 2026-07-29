@@ -1,0 +1,9 @@
+What is Initial Balance?
+
+In Auction Market Theory:
+
+Initial Balance is the highest and lowest traded price during the opening auction period.
+
+So the engine's primary responsibility is:
+
+Consume trades during a configured time window and determine the Initial Balance range (IB High and IB Low).

@@ -4,13 +4,17 @@
 #include <string>
 
 Trade::Trade(int buyOrderId, int sellOrderId, Symbol symbol, double price, double quantity, Side aggressorSide)
+    : Trade(buyOrderId, sellOrderId, std::move(symbol), price, quantity, aggressorSide, std::chrono::system_clock::now()) {}
+
+Trade::Trade(int buyOrderId, int sellOrderId, Symbol symbol, double price, double quantity, Side aggressorSide,
+             std::chrono::system_clock::time_point tradeTime)
     : tradeId(getIdByGenerator()),
       buyOrderId(buyOrderId),
       sellOrderId(sellOrderId),
       symbol(std::move(symbol)),
       price(price),
       quantity(quantity),
-      tradeTime(std::chrono::system_clock::now()),
+      tradeTime(tradeTime),
       aggressorSide(aggressorSide) {}
 
 int Trade::getTradeId() const {

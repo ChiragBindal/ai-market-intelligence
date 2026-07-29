@@ -26,6 +26,7 @@ add_library(orderflow
     src/DeltaEngine.cpp
     src/FootPrintLevel.cpp
     src/FootPrintEngine.cpp
+    src/ExhaustionEngine.cpp
 )
 
 target_include_directories(orderflow PUBLIC
@@ -43,6 +44,7 @@ add_executable(orderflow_tests
     tests/DeltaEngineTest.cpp
     tests/FootPrintLevelTest.cpp
     tests/FootPrintEngineTest.cpp
+    tests/ExhaustionEngineTest.cpp
 )
 
 target_include_directories(orderflow_tests PRIVATE
