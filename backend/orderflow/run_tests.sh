@@ -3,10 +3,14 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 EXCHANGE="$ROOT/../exchange"
+COMMON="$ROOT/../common"
 
 INCLUDES=(
   -I"$ROOT/include"
   -I"$ROOT/tests"
+  -I"$COMMON/event"
+  -I"$COMMON/engine"
+  -I"$COMMON/types"
   -I"$EXCHANGE/include/models"
   -I"$EXCHANGE/include/enums"
   -I"$EXCHANGE/include/utility"
@@ -14,15 +18,22 @@ INCLUDES=(
 
 SOURCES=(
   "$EXCHANGE/src/Trade.cpp"
+  "$COMMON/event/EventDispatcher.cpp"
+  "$COMMON/event/TradeEvent.cpp"
   "$ROOT/src/DeltaEngine.cpp"
   "$ROOT/src/FootPrintLevel.cpp"
   "$ROOT/src/FootPrintEngine.cpp"
   "$ROOT/src/ExhaustionEngine.cpp"
+  "$ROOT/src/ImbalanceEngine.cpp"
+  "$ROOT/src/AbsorptionEngine.cpp"
   "$ROOT/tests/main.cpp"
   "$ROOT/tests/DeltaEngineTest.cpp"
+  "$ROOT/tests/EventDispatcherTest.cpp"
   "$ROOT/tests/FootPrintLevelTest.cpp"
   "$ROOT/tests/FootPrintEngineTest.cpp"
   "$ROOT/tests/ExhaustionEngineTest.cpp"
+  "$ROOT/tests/ImbalanceEngineTest.cpp"
+  "$ROOT/tests/AbsorptionEngineTest.cpp"
 )
 
 g++ -std=c++17 "${INCLUDES[@]}" "${SOURCES[@]}" -o "$ROOT/orderflow_tests"

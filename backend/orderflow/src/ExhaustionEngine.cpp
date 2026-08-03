@@ -1,4 +1,5 @@
 #include "ExhaustionEngine.h"
+#include "TradeEvent.h"
 
 ExhaustionEngine::ExhaustionEngine(
     size_t rollingWindowSize,
@@ -7,6 +8,15 @@ ExhaustionEngine::ExhaustionEngine(
     : rollingWindowSize(rollingWindowSize),
       minimumPercentageDecrease(minimumPercentageDecrease),
       minimumConsecutiveDeclines(minimumConsecutiveDeclines) {}
+
+void ExhaustionEngine::onEvent(const MarketEvent& event) {
+    if (event.type() != EventType::Trade) {
+        return;
+    }
+    const auto& tradeEvent = static_cast<const TradeEvent&>(event);
+    const Trade& trade = tradeEvent.getTrade();
+    processObservation(trade.getAggressorSide(), trade.getQuantity());
+}
 
 void ExhaustionEngine::processObservation(Side side, double volume) {
     if (volume <= 0) {

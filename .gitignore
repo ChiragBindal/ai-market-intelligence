@@ -8,6 +8,7 @@ cmake-build-*/
 exchange_demo
 orderflow_tests
 market_context_tests
+event_dispatcher_demo
 
 # OS / editor
 .DS_Store
