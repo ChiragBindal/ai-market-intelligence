@@ -1,0 +1,7 @@
+Exception calling "Wait" with "1" argument(s): "One or more errors occurred."
+At D:\ai-market-intelligence\ai-market-intelligence\backend\common\adapters\binance_ws_stream.ps1:42 char:13
++         if (-not $receiveTask.Wait(1000)) {
++             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : AggregateException
+ 
